@@ -1,0 +1,12 @@
+# --- Windows and Mac files
+[Tt]humbs.db
+.DS_Store
+
+# --- Root
+/*
+!.github
+!.gitignore
+!README.md
+
+# --- Images
+!/phpfpm
