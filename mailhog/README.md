@@ -2,6 +2,8 @@
 
 ![maintenance-status](https://img.shields.io/badge/maintenance-actively--developed-brightgreen.svg)
 
+**Docker Hub**: https://hub.docker.com/r/travelopia/mailhog
+
 ## Why does this exist
 
 This is a fork of https://github.com/mailhog/MailHog

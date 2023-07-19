@@ -2,6 +2,8 @@
 
 ![maintenance-status](https://img.shields.io/badge/maintenance-actively--developed-brightgreen.svg)
 
+**Docker Hub**: https://hub.docker.com/r/travelopia/wordpress-php-fpm
+
 These images are built to be used with a `docker-compose.yml` file, and contain the following:
 
 1. PHP-FPM

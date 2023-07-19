@@ -2,6 +2,8 @@
 
 ![maintenance-status](https://img.shields.io/badge/maintenance-actively--developed-brightgreen.svg)
 
+**Docker Hub**: https://hub.docker.com/r/travelopia/solr
+
 Solr Docker image for https://wordpress.org/plugins/solr-power/. Pantheon (unfortunately) currently only supports Solr 3.6:
 
 https://github.com/pantheon-systems/solr-power
