@@ -4,7 +4,7 @@
 
 **Docker Hub**: https://hub.docker.com/r/travelopia/mailhog
 
-## Why does this exist
+## Why does this exist?
 
 This is a fork of https://github.com/mailhog/MailHog
 
