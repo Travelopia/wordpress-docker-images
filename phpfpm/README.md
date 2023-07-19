@@ -1,5 +1,7 @@
 # PHP-FPM Images
 
+![maintenance-status](https://img.shields.io/badge/maintenance-actively--developed-brightgreen.svg)
+
 These images are built to be used with a `docker-compose.yml` file, and contain the following:
 
 1. PHP-FPM
@@ -8,9 +10,9 @@ These images are built to be used with a `docker-compose.yml` file, and contain 
 4. Composer
 5. MailHog
 
-## Building Instructions
+## Build Instructions
 
-#### Note: These instructions are for MacOs running on an ARM processor.
+#### Note: These instructions are for macOS running on an ARM processor.
 
 1. `cd` into the directory with the Dockerfile
 2. Create a `buildx` builder, if you don't already have one: `docker buildx create --use --platform=linux/arm64,linux/amd64 --name multi-platform-builder`
