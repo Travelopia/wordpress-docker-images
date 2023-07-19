@@ -1,3 +1,13 @@
+# PHP-FPM Images
+
+These images are built to be used with a `docker-compose.yml` file, and contain the following:
+
+1. PHP-FPM
+2. Redis
+3. WP CLI
+4. Composer
+5. MailHog
+
 ## Building Instructions
 
 #### Note: These instructions are for MacOs running on an ARM processor.
