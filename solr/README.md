@@ -21,9 +21,6 @@ This image can be used to build a multi-architecture Solr `3.6.2` version.
 1. `cd` into the directory with the Dockerfile
 2. Create a `buildx` builder, if you don't already have one: `docker buildx create --use --platform=linux/arm64,linux/amd64 --name multi-platform-builder`
    1. This will create a container with prefix `buildx_` - you can delete it once you are done
-3. Build the image: `docker buildx build --platform linux/amd64,linux/arm64 -t solr .`
-   1. This will load it into memory, but not tag it yet
-4. Tag the image: `docker buildx build --load -t solr .`
-5. Log in via Docker Desktop, and then run: `docker login`
-6. Change the image tag locally: `docker tag solr travelopia/solr:3.6.2`
-7. Push this newly tagged image to Docker Hub: `docker push travelopia/solr:3.6.2`
+3. Log in via Docker Desktop, and then run: `docker login`
+4. Build and push the image: `docker buildx build --platform linux/amd64,linux/arm64 -t travelopia/solr:3.6.2 --push .`
+   1. This may take a long time!
