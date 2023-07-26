@@ -108,6 +108,17 @@ RUN { \
     echo 'html_errors = Off'; \
 } > /usr/local/etc/php/conf.d/error-logging.ini
 
+# XDebug
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug \
+    && { \
+        echo 'zend_extension=xdebug'; \
+        echo '[xdebug]'; \
+        echo 'xdebug.mode=off'; \
+        echo 'xdebug.start_with_request=yes'; \
+        echo 'xdebug.client_host=host.docker.internal'; \
+    } > /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
 # Redis
 RUN pecl install redis && docker-php-ext-enable redis
 

@@ -7,10 +7,11 @@
 These images are built to be used with a `docker-compose.yml` file, and contain the following:
 
 1. PHP-FPM
-2. Redis
-3. WP CLI
-4. Composer
-5. MailHog
+1. XDebug
+1. Redis
+1. Composer
+1. WP CLI
+1. MailHog
 
 ## Build Instructions
 
