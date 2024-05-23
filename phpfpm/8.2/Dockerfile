@@ -34,8 +34,15 @@ RUN set -ex; \
 		libpng-dev \
 		libwebp-dev \
 		libzip-dev \
+		libzstd-dev \
 	; \
-	\
+	# Redis with igbinary and zstd.
+	pecl install --onlyreqdeps --configureoptions='enable-redis-igbinary="yes" enable-redis-zstd="yes"' \
+		igbinary \
+		redis \
+	; \
+	docker-php-ext-enable igbinary redis \
+	; \
 	docker-php-ext-configure gd \
 		--with-freetype \
 		--with-jpeg \
@@ -118,9 +125,6 @@ RUN pecl install xdebug \
         echo 'xdebug.start_with_request=yes'; \
         echo 'xdebug.client_host=host.docker.internal'; \
     } > /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-
-# Redis
-RUN pecl install redis && docker-php-ext-enable redis
 
 # Composer
 RUN curl -sS https://getcomposer.org/installer | php \
