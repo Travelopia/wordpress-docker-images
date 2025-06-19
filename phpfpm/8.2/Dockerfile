@@ -17,6 +17,7 @@ RUN set -eux; \
 # bash is needed for 'wp shell': https://github.com/wp-cli/shell-command/blob/b8dafcc2a2eba5732fdee70be077675a302848e9/src/WP_CLI/REPL.php#L104
         bash \
         less \
+        ca-certificates \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
