@@ -4,7 +4,7 @@ FROM golang:alpine AS mailhog-build
 RUN go install github.com/mailhog/mhsendmail@latest \
 	&& cp $GOPATH/bin/mhsendmail /usr/local/bin/
 
-# https://github.com/docker-library/wordpress/blob/master/latest/php8.3/fpm/Dockerfile
+# https://github.com/docker-library/wordpress/blob/master/latest/php8.4/fpm/Dockerfile
 FROM php:8.4-fpm
 
 # Persistent dependencies
@@ -13,6 +13,9 @@ RUN set -eux; \
 	apt-get install -y --no-install-recommends \
 # Ghostscript is required for rendering PDF previews
 		ghostscript \
+# Pull in AV1 & HEVC image encoding (and not just decoding)
+		libheif-plugin-aomenc \
+		libheif-plugin-x265 \
 # https://github.com/docker-library/wordpress/blob/master/cli/php8.2/alpine/Dockerfile
 # bash is needed for 'wp shell': https://github.com/wp-cli/shell-command/blob/b8dafcc2a2eba5732fdee70be077675a302848e9/src/WP_CLI/REPL.php#L104
         bash \
@@ -61,7 +64,7 @@ RUN set -ex; \
 		zip \
 	; \
 # https://pecl.php.net/package/imagick
-	pecl install imagick-3.8.0; \
+	pecl install imagick-3.8.1; \
 	docker-php-ext-enable imagick; \
 	rm -r /tmp/pear; \
 	\
@@ -77,7 +80,7 @@ RUN set -ex; \
 	apt-mark auto '.*' > /dev/null; \
 	apt-mark manual $savedAptMark; \
 	ldd "$extDir"/*.so \
-		| awk '/=>/ { so = $(NF-1); if (index(so, "/usr/local/") == 1) { next }; gsub("^/(usr/)?", "", so); print so }' \
+		| awk '/=>/ { so = $(NF-1); if (index(so, "/usr/local/") == 1) { next }; gsub("^/(usr/)?", "", so); printf "*%s\n", so }' \
 		| sort -u \
 		| xargs -r dpkg-query --search \
 		| cut -d: -f1 \
@@ -95,7 +98,6 @@ RUN set -ex; \
 # Set recommended PHP.ini settings.
 # see https://secure.php.net/manual/en/opcache.installation.php
 RUN set -eux; \
-	docker-php-ext-enable opcache; \
 	{ \
 		echo 'opcache.memory_consumption=128'; \
 		echo 'opcache.interned_strings_buffer=8'; \
